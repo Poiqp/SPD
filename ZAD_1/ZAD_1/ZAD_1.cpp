@@ -1,20 +1,33 @@
 ﻿#include <iostream>
-#include <algorithm> 
+#include <algorithm>
+#include <iostream>
+#include <vector>
+#include "task.h"
+#include "pch.h"
 
+using namespace std;
 
 int main()
 {
    
-int myints[] = { 1,2,3 };
+	vector<task> zadania;
+	
+	// dodawanie zdań 
+	task zad_1(2, 4, 1);
+	task zad_2(4, 2, 2);
+	task zad_3(3, 6, 3);
 
-std::sort(myints, myints + 3);
+	zadania.push_back(zad_1);
+	zadania.push_back(zad_2);
+	zadania.push_back(zad_3);
 
-std::cout << "The 3! possible permutations with 3 elements:\n";
+	sort(zadania.begin, zadania.end );
+
 do {
-	std::cout << myints[0] << ' ' << myints[1] << ' ' << myints[2] << '\n';
-} while (std::next_permutation(myints, myints + 3));
+	cout << zadania.at(0).id << ' ' << zadania.at(1).id << ' ' << zadania.at(2).id << '\n';
+} while (next_permutation(zadania.at.begin, zadania.at.end));
 
-std::cout << "After loop: " << myints[0] << ' ' << myints[1] << ' ' << myints[2] << '\n';
+cout << "After loop: " << zadania.at(0).id << ' ' << zadania.at(1).id << ' ' << zadania.at(2).id << '\n';
 
 return 0;
 

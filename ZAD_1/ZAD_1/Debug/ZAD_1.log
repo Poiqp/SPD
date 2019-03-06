@@ -1,0 +1,27 @@
+﻿  ZAD_1.cpp
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(13): error C2065: "vector": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(13): error C2065: "task": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(13): error C2065: "zadania": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(16): error C2065: "task": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(16): error C2146: błąd składniowy: brakuje „;” przed identyfikatorem „zad_1”
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(16): error C3861: "zad_1": identyfikatora nie odnaleziono
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(17): error C2065: "task": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(17): error C2146: błąd składniowy: brakuje „;” przed identyfikatorem „zad_2”
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(17): error C3861: "zad_2": identyfikatora nie odnaleziono
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(18): error C2065: "task": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(18): error C2146: błąd składniowy: brakuje „;” przed identyfikatorem „zad_3”
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(18): error C3861: "zad_3": identyfikatora nie odnaleziono
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(20): error C2065: "zadania": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(20): error C2065: "zad_1": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(21): error C2065: "zadania": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(21): error C2065: "zad_2": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(22): error C2065: "zadania": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(22): error C2065: "zad_3": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(24): error C2065: "zadania": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(24): error C3861: "sort": identyfikatora nie odnaleziono
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(27): error C2065: "cout": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(27): error C2065: "zadania": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(28): error C2065: "zadania": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(28): error C3861: "next_permutation": identyfikatora nie odnaleziono
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(30): error C2065: "cout": niezadeklarowany identyfikator
+c:\users\poiq\documents\github\spd\zad_1\zad_1\zad_1.cpp(30): error C2065: "zadania": niezadeklarowany identyfikator
