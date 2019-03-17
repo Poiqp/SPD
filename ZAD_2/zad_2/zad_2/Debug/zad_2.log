@@ -1,0 +1,2 @@
+﻿  zad_2.cpp
+c:\users\poiq\documents\github\spd\zad_2\zad_2\zad_2\zad_2.cpp(47): error C3867: 'task::DisplayVectorContents': non-standard syntax; use '&' to create a pointer to member
