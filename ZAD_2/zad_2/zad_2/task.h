@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <atomic>
+
 
 class task
 {
@@ -9,6 +9,8 @@ public:
 	int id;
 
 	void AddMachine(int num);
+	int CountSum();
+
 
 	task();
 	task(int num);
