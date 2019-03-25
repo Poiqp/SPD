@@ -1,7 +1,2 @@
 ﻿  ZAD_2_on_arr.cpp
-c:\users\poiq\documents\github\spd\zad_2_on_arr\zad_2_on_arr\zad_2_on_arr.cpp(54): error C2440: 'initializing': cannot convert from 'std::_Vector_iterator<std::_Vector_val<std::_Simple_types<_Ty>>> *' to 'int *'
-          with
-          [
-              _Ty=int
-          ]
-  c:\users\poiq\documents\github\spd\zad_2_on_arr\zad_2_on_arr\zad_2_on_arr.cpp(54): note: Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+  ZAD_2_on_arr.vcxproj -> C:\Users\Poiq\Documents\GitHub\SPD\ZAD_2_on_arr\Debug\ZAD_2_on_arr.exe
