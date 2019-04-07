@@ -1,7 +1,5 @@
 ﻿  ZAD_3.cpp
+c:\users\poiq\documents\github\spd\zad_3\zad_3\zad_3.cpp(62): warning C4305: 'initializing': truncation from 'double' to 'float'
 c:\users\poiq\documents\github\spd\zad_3\zad_3\zad_3.cpp(64): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\poiq\documents\github\spd\zad_3\zad_3\zad_3.cpp(65): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\poiq\documents\github\spd\zad_3\zad_3\zad_3.cpp(66): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\poiq\documents\github\spd\zad_3\zad_3\zad_3.cpp(68): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\poiq\documents\github\spd\zad_3\zad_3\zad_3.cpp(91): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\poiq\documents\github\spd\zad_3\zad_3\zad_3.cpp(67): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   ZAD_3.vcxproj -> C:\Users\Poiq\Documents\GitHub\SPD\ZAD_3\Debug\ZAD_3.exe
