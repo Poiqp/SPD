@@ -38,6 +38,26 @@ bool TestVec(int t, vector<vector<int> > vect) {
 	return true;
 }
 
+vector<vector<int> > Sort(int t, vector<vector<int> > vect) {
+	int time = 1;
+	vector<vector<int> > sorted;
+	vector<int> tmp(3,0);
+
+	while (sorted.size() != t) {
+		for (int i = 0; i < t; i++) {
+			if (vect[i][0] == time) {
+				tmp[0] = vect[i][0];
+				tmp[1] = vect[i][1];
+				tmp[2] = vect[i][2];
+				sorted.push_back(tmp);
+			}
+		}
+		time++;
+	}
+	return sorted;
+}
+
+
 int main()
 {
 	// t-tasks, m=3 - rpq 
@@ -62,10 +82,14 @@ int main()
 		data >> tmp;
 		vect[i].push_back(tmp);
 	}
-	// cout << vect[1][0] << endl;
-
 
 	cout << TestVec(t,vect)<<endl;
 	cout << Cmax(t, vect) << endl;
+
+	// posortowany wektor wzgledem R
+	vector<vector<int> > sorted;
+	sorted = Sort(t, vect);
+
+	cout << sorted[0][0] << sorted[1][0] << sorted[2][0] <<  endl;
 
 } 
