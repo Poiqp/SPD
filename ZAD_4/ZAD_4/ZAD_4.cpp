@@ -4,9 +4,6 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
-#include <random>
-#include <time.h>
-#include <ctime>
 #include <cstdlib>
 #include <math.h>
 #include <stdlib.h>
@@ -38,21 +35,21 @@ bool TestVec(int t, vector<vector<int> > vect) {
 	return true;
 }
 
-vector<vector<int> > Sort(int t, vector<vector<int> > vect) {
-	int time = 1;
+//finding the smallest R
+vector<vector<int> > Sort(vector<vector<int> > & vect, int time) {
 	vector<vector<int> > sorted;
+	vector<int> idToDelete;
 	vector<int> tmp(3,0);
 
-	while (sorted.size() != t) {
-		for (int i = 0; i < t; i++) {
-			if (vect[i][0] == time) {
-				tmp[0] = vect[i][0];
-				tmp[1] = vect[i][1];
-				tmp[2] = vect[i][2];
-				sorted.push_back(tmp);
-			}
+	for (int i = 0; i < vect.size()/3; i++) {
+		if (vect[i][0] == time) {
+			tmp[0] = vect[i][0];
+			tmp[1] = vect[i][1];
+			tmp[2] = vect[i][2];
+			sorted.push_back(tmp);
+			vect.erase(vect.begin() + i);
+			idToDelete.push_back(i);
 		}
-		time++;
 	}
 	return sorted;
 }
@@ -83,13 +80,27 @@ int main()
 		vect[i].push_back(tmp);
 	}
 
-	cout << TestVec(t,vect)<<endl;
-	cout << Cmax(t, vect) << endl;
+	//tests 
+	//cout << TestVec(t,vect)<<endl;
+	//cout << Cmax(t, vect) << endl;
+	//tests
 
-	// posortowany wektor wzgledem R
+	/*
+	for (const std::vector<int> &v : vect)
+	{
+		for (int x : v) std::cout << x << ' ';
+		std::cout << std::endl;
+	}
+	*/
+
+	
+	int time = 1;
 	vector<vector<int> > sorted;
-	sorted = Sort(t, vect);
+	
+	//size == 6
+	sorted = Sort(vect, time);
+	//size == 5 cos jest nie tak trzeba to ogarnac 
 
-	cout << sorted[0][0] << sorted[1][0] << sorted[2][0] <<  endl;
+
 
 } 
