@@ -47,7 +47,7 @@ void DeleteRow(vector<vector<int> > & vect, int row) {
 }
 
 //finding the smallest R and delete corresponding tasks from vector, return smallest R's
-vector<vector<int> > Sort(int & t, vector<vector<int> > & vect, int time) {
+vector<vector<int> > ExtractSmallest(int & t, vector<vector<int> > & vect, int time) {
 	vector<vector<int> > sorted;
 	vector<int> tmp(3,0);
 	vector<bool> rowsToDelete(vect.size(),false);
@@ -75,6 +75,7 @@ vector<vector<int> > Sort(int & t, vector<vector<int> > & vect, int time) {
 }
 
 
+
 int main()
 {
 	// t-tasks, m=3 - rpq 
@@ -82,13 +83,14 @@ int main()
 	ifstream data("in2.txt");
 	data >> t;
 	data >> m;
-	vector<vector<int> > vect(t);
+	vector<vector<int> > vect;
 
 	//filing up vector 
 	for (int i = 0; i < t; i++) {
 		vector<int> vectTmp;
 		vect.push_back(vectTmp);
 	}
+
 	// vect[t][R=0,P=1,Q=2]
 	for (int i = 0; i < t; i++) {
 		int tmp;
@@ -102,20 +104,25 @@ int main()
 
 	
 	int time = 0;
-	vector<vector<int> > sorted;
+	vector<vector<int> > smallest;
+	vector<vector<int> > done;
 	
-	/*		TEST GENERALNY PÊTLI SCIAGAJACEJ NAJMNIEJSZE R 
-	for(time = 0; time < 4; time++) {
+	
+	
+	// jak sprawdzic czy jest pusty skoro size nie dziala 
+	while(!vect.empty()) {
 
-		cout << "________________" << time << endl;
+		cout << "____________time: " << time << "_______________size: " << vect.size() << endl;
 		
 		for (const std::vector<int> &v : vect)
 		{
 			for (int x : v) std::cout << x << ' ';
 			std::cout << std::endl;
 		}
+
+		cout << endl;
 		
-		sorted = Sort(t, vect, time);
+		smallest = ExtractSmallest(t, vect, time);
 		
 		for (const std::vector<int> &k : vect)
 		{
@@ -123,13 +130,17 @@ int main()
 			std::cout << std::endl;
 		}
 		
-		
+		cout << endl;
 		cout << "sorted   : " << endl;
-		for (const std::vector<int> &m : sorted)
+		cout << endl;
+		for (const std::vector<int> &m : smallest)
 		{
 			for (int o : m) std::cout << o << ' ';
 			std::cout << std::endl;
 		}
-		*/
+	
+		time++;
 	}
+	
+	
 } 
