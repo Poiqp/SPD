@@ -10,6 +10,7 @@
 
 using namespace std;
 
+//count Cmax of given vector 
 int Cmax(int t, vector<vector<int> > vect) {
 	int sum = 0;
 	sum = vect[0][0];
@@ -22,6 +23,7 @@ int Cmax(int t, vector<vector<int> > vect) {
 	return sum;
 }
 
+//test if it can run 
 bool TestVec(int t, vector<vector<int> > vect) {
 	int sum = 0;
 	sum = vect[0][0];
@@ -35,22 +37,40 @@ bool TestVec(int t, vector<vector<int> > vect) {
 	return true;
 }
 
-//finding the smallest R
-vector<vector<int> > Sort(vector<vector<int> > & vect, int time) {
-	vector<vector<int> > sorted;
-	vector<int> idToDelete;
-	vector<int> tmp(3,0);
+//delete a task with its RPQ 
+void DeleteRow(vector<vector<int> > & vect, int row) {
 
-	for (int i = 0; i < vect.size()/3; i++) {
+	if (vect.size() > row)
+	{
+		vect.erase(vect.begin() + row);
+	}
+}
+
+//finding the smallest R and delete corresponding tasks from vector, return smallest R's
+vector<vector<int> > Sort(int & t, vector<vector<int> > & vect, int time) {
+	vector<vector<int> > sorted;
+	vector<int> tmp(3,0);
+	vector<bool> rowsToDelete(vect.size(),false);
+
+	for (int i = 0; i < t; i++) {
 		if (vect[i][0] == time) {
 			tmp[0] = vect[i][0];
 			tmp[1] = vect[i][1];
 			tmp[2] = vect[i][2];
 			sorted.push_back(tmp);
-			vect.erase(vect.begin() + i);
-			idToDelete.push_back(i);
+			rowsToDelete[i] = true;
+			t--;
 		}
 	}
+
+	for (int i = 0; i < vect.size(); i++)
+	{
+		while(rowsToDelete[i] == true) {
+			DeleteRow(vect, i);
+			rowsToDelete.erase(rowsToDelete.begin() + i);
+		}
+	}
+
 	return sorted;
 }
 
@@ -80,27 +100,36 @@ int main()
 		vect[i].push_back(tmp);
 	}
 
-	//tests 
-	//cout << TestVec(t,vect)<<endl;
-	//cout << Cmax(t, vect) << endl;
-	//tests
-
-	/*
-	for (const std::vector<int> &v : vect)
-	{
-		for (int x : v) std::cout << x << ' ';
-		std::cout << std::endl;
-	}
-	*/
-
 	
-	int time = 1;
+	int time = 0;
 	vector<vector<int> > sorted;
 	
-	//size == 6
-	sorted = Sort(vect, time);
-	//size == 5 cos jest nie tak trzeba to ogarnac 
+	/*		TEST GENERALNY PÊTLI SCIAGAJACEJ NAJMNIEJSZE R 
+	for(time = 0; time < 4; time++) {
 
-
-
+		cout << "________________" << time << endl;
+		
+		for (const std::vector<int> &v : vect)
+		{
+			for (int x : v) std::cout << x << ' ';
+			std::cout << std::endl;
+		}
+		
+		sorted = Sort(t, vect, time);
+		
+		for (const std::vector<int> &k : vect)
+		{
+			for (int z : k) std::cout << z << ' ';
+			std::cout << std::endl;
+		}
+		
+		
+		cout << "sorted   : " << endl;
+		for (const std::vector<int> &m : sorted)
+		{
+			for (int o : m) std::cout << o << ' ';
+			std::cout << std::endl;
+		}
+		*/
+	}
 } 
