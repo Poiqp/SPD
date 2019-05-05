@@ -31,6 +31,8 @@ int Cmax(vector<vector<int> > vect) {
 	sum = vect[0][0];
 
 	for (int i = 0; i < vect.size(); i++) {
+
+		if (sum < vect[i][0]) { sum = vect[i][0]; }
 		sum += vect[i][1];
 	}
 
@@ -149,7 +151,7 @@ int main()
 	cout << TestVec(t, order) << endl;
 	cout << time << endl;
 	cout << order.size() << endl;
-//	cout << Cmax(order) << endl;  NAPISAC JESZCZE RAZ CMAXA Z UWZGLEDNIENIEM DZIUR !!!
+	cout << Cmax(order) << endl; 
 }
 
 /*
