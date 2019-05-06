@@ -25,33 +25,22 @@ bool SortByCol(const vector<int>& v1, const vector<int>& v2) {
 	return v1[2] > v2[2];
 }
 
-//count Cmax of given vector ALE NIE DO KONCA BO NIE DOLICZA DZIUR 
+//cmax 
 int Cmax(vector<vector<int> > vect) {
 	int sum = 0;
+	int qProjected = 0;
 	sum = vect[0][0];
+	
 
 	for (int i = 0; i < vect.size(); i++) {
 
 		if (sum < vect[i][0]) { sum = vect[i][0]; }
 		sum += vect[i][1];
+
+		qProjected = max(qProjected, sum + vect[i][2]);
 	}
 
-	sum += vect[vect.size() - 1][2];
-	return sum;
-}
-
-//test if it can run 
-bool TestVec(int t, vector<vector<int> > vect) {
-	int sum = 0;
-	sum = vect[0][0];
-
-	for (int i = 0; i < t - 1; i++) {
-		sum += vect[i][1];
-		if (sum < vect[i + 1][0]) {
-			return false;
-		}
-	}
-	return true;
+	return qProjected;
 }
 
 //gotowe R wzglêdem czasu vect -> ready
@@ -76,13 +65,12 @@ int GetOrder(vector<vector<int> > & ready, vector<vector<int> > & order) {
 
 	sort(ready.begin(), ready.end(), SortByCol);
 
-	//while (!ready.empty()) {
 		tmp[0] = ready[0][0];
 		tmp[1] = ready[0][1];
 		tmp[2] = ready[0][2];
 		order.push_back(tmp);
 		ready.erase(ready.begin());
-	//}
+
 		return tmp[1];
 }
 
@@ -101,7 +89,7 @@ int main()
 {
 	// t-tasks, m=3 - rpq 
 	int t, m;
-	ifstream data("in50.txt");
+	ifstream data("inMak.txt");
 	data >> t;
 	data >> m;
 	vector<vector<int> > vect;
@@ -123,15 +111,13 @@ int main()
 		vect[i].push_back(tmp);
 	}
 
-
 	int time = 0;
 	int getP = 0;
 	vector<vector<int> > ready;
 	vector<vector<int> > order;
 
 	time = FindSmallestRTime(vect);
-
-	//POPRZEDNIE WYKONANIE PRZERZUCALO Q CALOSCIOWO | SPROBOWAC PO KOLEI ZGODNIE Z PSEUDOKODEM 
+	
 	while (vect.empty() != 1 || ready.empty() != 1) {
 
 		GetReady(vect, ready, time);
@@ -146,42 +132,13 @@ int main()
 	}
 
 
+	
 	PrintVect(order);
 
-	cout << TestVec(t, order) << endl;
 	cout << time << endl;
 	cout << order.size() << endl;
 	cout << Cmax(order) << endl; 
+	
 }
-
-/*
-	time = 1;
-	cout << "__________CZAS= " << time << endl;
-	PrintVect(vect);
-	GetReady(vect, ready, time);
-	GetOrder(ready, order);
-	PrintVect(order);
-
-	time = 2;
-	cout << "__________CZAS= " << time << endl;
-	PrintVect(vect);
-	GetReady(vect, ready, time);
-	GetOrder(ready, order);
-	PrintVect(order);
-
-	time = 3;
-	cout << "__________CZAS= " << time << endl;
-	PrintVect(vect);
-	GetReady(vect, ready, time);
-	GetOrder(ready, order);
-	PrintVect(order);
-
-	time = 4;
-	cout << "__________CZAS= " << time << endl;
-	PrintVect(vect);
-	GetReady(vect, ready, time);
-	GetOrder(ready, order);
-	PrintVect(order);
-	*/
 
 

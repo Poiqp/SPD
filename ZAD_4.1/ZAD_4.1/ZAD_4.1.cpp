@@ -25,33 +25,22 @@ bool SortByColQ(const vector<int>& v1, const vector<int>& v2) {
 	return v1[2] > v2[2];
 }
 
-//count Cmax of given vector ALE NIE DO KONCA BO NIE DOLICZA DZIUR 
+
+//cmax 
 int Cmax(vector<vector<int> > vect) {
 	int sum = 0;
+	int qProjected = 0;
 	sum = vect[0][0];
 
 	for (int i = 0; i < vect.size(); i++) {
 
 		if (sum < vect[i][0]) { sum = vect[i][0]; }
 		sum += vect[i][1];
+
+		qProjected = max(qProjected, sum + vect[i][2]);
 	}
 
-	sum += vect[vect.size() - 1][2];
-	return sum;
-}
-
-//test if it can run 
-bool TestVec(int t, vector<vector<int> > vect) {
-	int sum = 0;
-	sum = vect[0][0];
-
-	for (int i = 0; i < t - 1; i++) {
-		sum += vect[i][1];
-		if (sum < vect[i + 1][0]) {
-			return false;
-		}
-	}
-	return true;
+	return qProjected;
 }
 
 //zwaraca gotowe do wykonania zadanie przy czym wrzuca je na ready i sciaga z wektora zadan
@@ -72,7 +61,7 @@ vector<int> GetReady(vector<vector<int> > & vect, vector<vector<int> > & ready, 
 	return tmp;
 }
 
-//najwieksze Q , ready -> order ||| zwraca P 
+//zanjduje i œciaga z wektora zadanie o najwiekszym Q 
 vector<int> GetBiggestQ(vector<vector<int> > & ready) {
 	vector<int> tmp(3, 0);
 
@@ -86,7 +75,7 @@ vector<int> GetBiggestQ(vector<vector<int> > & ready) {
 	return tmp;
 }
 
-//najmniejsze R 
+//zwaraca zadanie o najmniejszym R
 int FindSmallestRTime(vector<vector<int> >  vect) {
 	int smallestR = vect[0][0];
 
@@ -101,7 +90,7 @@ int main()
 {
 	// t-tasks, m=3 - rpq 
 	int t, m;
-	ifstream data("in50.txt");
+	ifstream data("in200.txt");
 	data >> t;
 	data >> m;
 	vector<vector<int> > vect;
@@ -157,7 +146,7 @@ int main()
 			act = GetBiggestQ(ready);
 			prev = act;
 			time = time + act[1];
-			cmax = time + act[2];
+			cmax = max(cmax , time + act[2]);
 		}
 	}
 

@@ -1,5 +1,5 @@
 ﻿  ZAD_4.1.cpp
-c:\users\poiq\documents\github\spd\zad_4.1\zad_4.1\zad_4.1.cpp(33): warning C4018: '<': signed/unsigned mismatch
-c:\users\poiq\documents\github\spd\zad_4.1\zad_4.1\zad_4.1.cpp(61): warning C4018: '<': signed/unsigned mismatch
-c:\users\poiq\documents\github\spd\zad_4.1\zad_4.1\zad_4.1.cpp(93): warning C4018: '<': signed/unsigned mismatch
+c:\users\poiq\documents\github\spd\zad_4.1\zad_4.1\zad_4.1.cpp(35): warning C4018: '<': signed/unsigned mismatch
+c:\users\poiq\documents\github\spd\zad_4.1\zad_4.1\zad_4.1.cpp(50): warning C4018: '<': signed/unsigned mismatch
+c:\users\poiq\documents\github\spd\zad_4.1\zad_4.1\zad_4.1.cpp(82): warning C4018: '<': signed/unsigned mismatch
   ZAD_4.1.vcxproj -> C:\Users\Poiq\Documents\GitHub\SPD\ZAD_4.1\Debug\ZAD_4.1.exe
