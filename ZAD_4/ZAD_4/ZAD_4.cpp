@@ -89,7 +89,7 @@ int main()
 {
 	// t-tasks, m=3 - rpq 
 	int t, m;
-	ifstream data("inMak.txt");
+	ifstream data("in200.txt");
 	data >> t;
 	data >> m;
 	vector<vector<int> > vect;
