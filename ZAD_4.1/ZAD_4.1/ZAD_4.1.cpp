@@ -43,8 +43,8 @@ int Cmax(vector<vector<int> > vect) {
 	return qProjected;
 }
 
-//zwaraca gotowe do wykonania zadanie przy czym wrzuca je na ready i sciaga z wektora zadan
-vector<int> GetReady(vector<vector<int> > & vect, vector<vector<int> > & ready, int time) {
+//zwaraca gotowe do wykonania zadanie przy czym wrzuca je na ready i sciaga z wektora zadan | druga wersja zwracajaca 
+vector<int> GetReadyPrime(vector<vector<int> > & vect, vector<vector<int> > & ready, int time) {
 	vector<int> tmp(3, 0);
 
 	for (int i = 0; i < vect.size(); i++) {
@@ -129,7 +129,7 @@ int main()
 	while (vect.empty() != 1 || ready.empty() != 1) {
 
 		while (vect.empty() != 1 && FindSmallestRTime(vect) <= time) {
-			act = GetReady(vect, ready, time);
+			act = GetReadyPrime(vect, ready, time);
 			if (act[2] > prev[2]) {
 				prev[1] = time - act[0];
 				time = act[0];
