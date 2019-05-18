@@ -38,7 +38,7 @@ int Cmax(vector<vector<int> > vect) {
 	sum = vect[0][0];
 
 
-	for (int i = 0; i < vect.size(); i++) {
+	for (unsigned int i = 0; i < vect.size(); i++) {
 
 		if (sum < vect[i][0]) { sum = vect[i][0]; }
 		sum += vect[i][1];
@@ -53,7 +53,7 @@ int Cmax(vector<vector<int> > vect) {
 void GetReady(vector<vector<int> > & vect, vector<vector<int> > & ready, int time) {
 	vector<int> tmp(3, 0);
 
-	for (int i = 0; i < vect.size(); i++) {
+	for (unsigned int i = 0; i < vect.size(); i++) {
 		if (vect[i][0] <= time) {
 			tmp[0] = vect[i][0];
 			tmp[1] = vect[i][1];
@@ -84,7 +84,7 @@ int GetOrder(vector<vector<int> > & ready, vector<vector<int> > & order) {
 vector<int> GetReadyPrime(vector<vector<int> > & vect, vector<vector<int> > & ready, int time) {
 	vector<int> tmp(3, 0);
 
-	for (int i = 0; i < vect.size(); i++) {
+	for (unsigned int i = 0; i < vect.size(); i++) {
 		if (vect[i][0] <= time) {
 			tmp[0] = vect[i][0];
 			tmp[1] = vect[i][1];
@@ -116,7 +116,7 @@ vector<int> GetBiggestQ(vector<vector<int> > & ready) {
 int FindSmallestRTime(vector<vector<int> >  vect) {
 	int smallestR = vect[0][0];
 
-	for (int i = 0; i < vect.size(); i++) {
+	for (unsigned int i = 0; i < vect.size(); i++) {
 		if (vect[i][0] < smallestR) { smallestR = vect[i][0]; }
 	}
 	return smallestR;
@@ -124,7 +124,8 @@ int FindSmallestRTime(vector<vector<int> >  vect) {
 
 ///////////  SCHRAGE I SCHRAGE PTMN //////////////////////////
 
-int Schrage(vector<vector<int> > vect) {
+/// Schrage zwaraca wartoœæ Cmaxa | zwraca zmienianego vecta wg kolejnoœci
+int Schrage(vector<vector<int> > & vect) {
 	int time = 0;
 	int getP = 0;
 	vector<vector<int> > ready;
@@ -144,11 +145,13 @@ int Schrage(vector<vector<int> > vect) {
 			time += getP;
 		}
 	}
+	vect = order;
 
 	return Cmax(order);
 }
 
-int SchragePTMN(vector<vector<int> > vect) {
+/// SchragePTMN zwaraca wartoœæ Cmaxa
+int SchragePTMN(vector<vector<int> >  vect) {
 	int time = 0;
 	int cmax = 0;
 	int l = 0;
@@ -190,10 +193,17 @@ int SchragePTMN(vector<vector<int> > vect) {
 /////////// CARLIER FUNKCJE //////////////////////////
 
 int findA(vector<vector<int> > vect, int B) {
-	int ID;
+	int ID=0;
+	int sum = 0;
+	sum = vect[0][0];
 
-
-
+	for (int i = 0; i < B; i++) {
+		if (sum < vect[i][0]) { 
+			sum = vect[i][0]; 
+			ID = i;
+		}
+		sum += vect[i][1];
+	}
 	return ID;
 }
 
@@ -203,7 +213,7 @@ int findB(vector<vector<int> > vect) {
 	int qProjected = 0;
 	sum = vect[0][0];
 
-	for (int i = 0; i < vect.size(); i++) {
+	for (unsigned int i = 0; i < vect.size(); i++) {
 
 		if (sum < vect[i][0]) { sum = vect[i][0]; }
 		sum += vect[i][1];
@@ -218,7 +228,7 @@ int findB(vector<vector<int> > vect) {
 }
 
 int findC(vector<vector<int> > vect, int A, int B) {
-	int ID;
+	int ID=0;
 
 	return ID;
 }
@@ -227,7 +237,7 @@ int main()
 {
 	// t-tasks, m=3 - rpq 
 	int t, m;
-	ifstream data("in200.txt");
+	ifstream data("inMak.txt");
 	data >> t;
 	data >> m;
 	vector<vector<int> > vect;
@@ -249,9 +259,18 @@ int main()
 		vect[i].push_back(tmp);
 	}
 
+	vector<vector<int> > brandNewOrder;
+	brandNewOrder = vect;
 
+	PrintVect(brandNewOrder);
+	Schrage(brandNewOrder);
+	PrintVect(brandNewOrder);
 
+	int B = findB(brandNewOrder);
+	cout << B << endl;
 
-	cout << Schrage(vect) <<"    "  <<  SchragePTMN(vect) << endl;
+	///coœ z A nie dzia³a 
+	int A = findA(brandNewOrder, B);
+	cout << A << endl;
 
 }
