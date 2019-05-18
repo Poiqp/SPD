@@ -229,9 +229,21 @@ int findB(vector<vector<int> > vect) {
 
 int findC(vector<vector<int> > vect, int A, int B) {
 	int ID=0;
+	int qB = vect[B][2];
+	int maxQ = 0;
 
+	for (unsigned int i = A; i < B; i++) {
+		if (vect[i][2] >= maxQ) {
+			ID = i;
+		}
+	}
 	return ID;
 }
+
+
+
+
+
 
 int main()
 {
@@ -272,5 +284,11 @@ int main()
 	///coœ z A nie dzia³a 
 	int A = findA(brandNewOrder, B);
 	cout << A << endl;
+
+	int C = findC(brandNewOrder, A , B);
+	cout << C << endl;
+
+
+
 
 }
