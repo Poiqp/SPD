@@ -246,8 +246,7 @@ vector<vector<int> > cutBloc_woC(vector<vector<int> > vect, int C, int B) {
 	vector<int> tmp(3,0);
 	int blocIT = 0;
 	
-	///moze pojawiac sie pozniej problem!
-	for (unsigned int i = C+1; i < B+1; i++) {
+	for (unsigned int i = C+1; i <= B; i++) {
 		tmp[0] = vect[i][0];
 		tmp[1] = vect[i][1];
 		tmp[2] = vect[i][2];
@@ -263,8 +262,7 @@ vector<vector<int> > cutBloc_wC(vector<vector<int> > vect, int C, int B) {
 	vector<int> tmp(3, 0);
 	int blocIT = 0;
 
-	///moze pojawiac sie pozniej problem!
-	for (unsigned int i = C ; i < B + 1; i++) {
+	for (unsigned int i = C ; i <= B; i++) {
 		tmp[0] = vect[i][0];
 		tmp[1] = vect[i][1];
 		tmp[2] = vect[i][2];
@@ -317,8 +315,8 @@ int maximum(int a, int b, int c)
 
 ///////////// CARLIER /////////////////////////
 
-int Carlier(vector<vector<int> >  vect , int & UB, int & LB) {
-	int U;
+vector<vector<int> > Carlier(vector<vector<int> >  vect , int & UB, int & LB) {
+	int U;	
 	vector<vector<int> > Uorder;
 
 	Uorder = vect;
@@ -337,7 +335,7 @@ int Carlier(vector<vector<int> >  vect , int & UB, int & LB) {
 	int C = findC(vect, A, B);
 
 	if (C == 0) {
-		return Cmax(vect);
+		return vect;
 	}
 
 	vector<vector<int> > K;
@@ -415,18 +413,22 @@ int main()
 		vect[i].push_back(tmp);
 	}
 
+	
+
 	int UB = 9999999;
-	int LB = 9999999;
+	int LB;
+	vector<vector<int> > finalOrder;
 
-	Carlier(vect,UB,LB);
-
+	finalOrder = Carlier(vect,UB,LB);
+	
+	
 	/*
 	vector<vector<int> > brandNewOrder;
+	vector<vector<int> > brandNewNewOrder;
+
 	brandNewOrder = vect;
 
-	PrintVect(brandNewOrder);
 	Schrage(brandNewOrder);
-	PrintVect(brandNewOrder);
 
 	int B = findB(brandNewOrder);
 	cout << B << endl;
@@ -438,12 +440,17 @@ int main()
 	int C = findC(brandNewOrder, A , B);
 	cout << C << endl;
 
-	PrintVect(brandNewOrder);
+	brandNewNewOrder = brandNewOrder;
 
-	brandNewOrder = cutBloc(brandNewOrder, C, B);
+	cout << brandNewOrder[C][0] << "    " << brandNewOrder[C][1] << "    " << brandNewOrder[C][2] << endl;
+
+	brandNewOrder = cutBloc_woC(brandNewOrder, C, B);
+	brandNewNewOrder = cutBloc_wC(brandNewNewOrder, C, B);
 
 	PrintVect(brandNewOrder);
+	PrintVect(brandNewNewOrder);
 	*/
+
 	
 
 }
