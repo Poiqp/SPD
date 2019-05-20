@@ -1,5 +1,5 @@
 ﻿  ZAD_5.cpp
 c:\users\poiq\documents\github\spd\zad_5\zad_5\zad_5.cpp(249): warning C4018: '<=': signed/unsigned mismatch
 c:\users\poiq\documents\github\spd\zad_5\zad_5\zad_5.cpp(265): warning C4018: '<=': signed/unsigned mismatch
-c:\users\poiq\documents\github\spd\zad_5\zad_5\zad_5.cpp(386): warning C4715: 'Carlier': not all control paths return a value
+c:\users\poiq\documents\github\spd\zad_5\zad_5\zad_5.cpp(382): warning C4715: 'Carlier': not all control paths return a value
   ZAD_5.vcxproj -> C:\Users\Poiq\Documents\GitHub\SPD\ZAD_5\Debug\ZAD_5.exe

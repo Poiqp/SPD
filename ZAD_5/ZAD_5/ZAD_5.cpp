@@ -191,13 +191,13 @@ int SchragePTMN(vector<vector<int> >  vect) {
 }
 
 /////////// CARLIER FUNKCJE //////////////////////////
-
+///sprawdzic 
 int findA(vector<vector<int> > vect, int B) {
 	int ID=0;
 	int sum = 0;
-	sum = vect[0][0];
+	//sum = vect[0][0];
 
-	for (int i = 0; i < B; i++) {
+	for (int i = 0; i <= B; i++) {
 		if (sum < vect[i][0]) { 
 			sum = vect[i][0]; 
 			ID = i;
@@ -316,23 +316,23 @@ int maximum(int a, int b, int c)
 ///////////// CARLIER /////////////////////////
 
 vector<vector<int> > Carlier(vector<vector<int> >  vect , int & UB, int & LB) {
-	int U;	
 	vector<vector<int> > Uorder;
-
 	Uorder = vect;
 	
-	U = Schrage(Uorder);
+	int U = Schrage(Uorder);
 
 	if (U < UB) {
 		UB = U;
 		vect = Uorder;
 	}
 
-	cout << UB << endl;
+	//cout << UB << endl;
 
 	int B = findB(vect);
 	int A = findA(vect, B);
 	int C = findC(vect, A, B);
+
+	cout << A << endl;
 
 	if (C == 0) {
 		return vect;
@@ -357,28 +357,24 @@ vector<vector<int> > Carlier(vector<vector<int> >  vect , int & UB, int & LB) {
 	hK_wC = rK_wC + qK_wC + pK_wC;
 
 	old_R = vect[C][0];
-	vect[C][0] = max(vect[C][0], rK + pK);
+	vect[C][0] = max(old_R, rK + pK);
 
 	LB = SchragePTMN(vect);
 	LB = maximum(hK, hK_wC, LB);
 
 	if (LB < UB) {
-		K.clear();
-		K_wC.clear();
 		Carlier(vect, UB , LB );
 	}
 
 	vect[C][0] = old_R;
 
 	old_Q = vect[C][2];
-	vect[C][2] = max(vect[C][2], qK + pK);
+	vect[C][2] = max(old_Q, qK + pK);
 
 	LB = SchragePTMN(vect);
 	LB = maximum(hK, hK_wC, LB);
 
 	if (LB < UB) {
-		K.clear();
-		K_wC.clear();
 		Carlier(vect, UB , LB);
 	}
 	
@@ -391,7 +387,7 @@ int main()
 {
 	// t-tasks, m=3 - rpq 
 	int t, m;
-	ifstream data("inData001.txt");
+	ifstream data("inMak.txt");
 	data >> t;
 	data >> m;
 	vector<vector<int> > vect;
@@ -416,13 +412,13 @@ int main()
 	
 
 	int UB = 9999999;
-	int LB;
+	int LB = 0;
 	vector<vector<int> > finalOrder;
 
 	finalOrder = Carlier(vect,UB,LB);
 	
-	
 	/*
+	
 	vector<vector<int> > brandNewOrder;
 	vector<vector<int> > brandNewNewOrder;
 
@@ -433,7 +429,6 @@ int main()
 	int B = findB(brandNewOrder);
 	cout << B << endl;
 
-	///coœ z A nie dzia³a 
 	int A = findA(brandNewOrder, B);
 	cout << A << endl;
 
