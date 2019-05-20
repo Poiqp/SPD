@@ -232,16 +232,160 @@ int findC(vector<vector<int> > vect, int A, int B) {
 	int qB = vect[B][2];
 	int maxQ = 0;
 
-	for (unsigned int i = A; i < B; i++) {
-		if (vect[i][2] >= maxQ) {
+	for ( int i = A; i < B; i++) {
+		if (vect[i][2] >= maxQ && vect[i][2] < qB) {
 			ID = i;
 		}
 	}
 	return ID;
 }
 
+/// wycinanie bloku bez C
+vector<vector<int> > cutBloc_woC(vector<vector<int> > vect, int C, int B) {
+	vector<vector<int> > bloc;
+	vector<int> tmp(3,0);
+	int blocIT = 0;
+	
+	///moze pojawiac sie pozniej problem!
+	for (unsigned int i = C+1; i < B+1; i++) {
+		tmp[0] = vect[i][0];
+		tmp[1] = vect[i][1];
+		tmp[2] = vect[i][2];
 
+		bloc.push_back(tmp);
+	}
+	return bloc;
+}
 
+///wycinanie bloku z C
+vector<vector<int> > cutBloc_wC(vector<vector<int> > vect, int C, int B) {
+	vector<vector<int> > bloc;
+	vector<int> tmp(3, 0);
+	int blocIT = 0;
+
+	///moze pojawiac sie pozniej problem!
+	for (unsigned int i = C ; i < B + 1; i++) {
+		tmp[0] = vect[i][0];
+		tmp[1] = vect[i][1];
+		tmp[2] = vect[i][2];
+
+		bloc.push_back(tmp);
+	}
+	return bloc;
+}
+
+int findMinR_bloc(vector<vector<int> > vect) {
+	int ID = 0;
+	int smallestR = vect[0][0];
+
+	for (unsigned int i = 0; i < vect.size(); i++) {
+		if (vect[i][0] < smallestR) { 
+			smallestR = vect[i][0]; 
+			ID = i;
+		}
+	}
+	return smallestR;
+}
+
+int findMinQ_bloc(vector<vector<int> > vect) {
+	int ID = 0;
+	int smallestQ = vect[0][2];
+
+	for (unsigned int i = 0; i < vect.size(); i++) {
+		if (vect[i][2] < smallestQ) { 
+			smallestQ = vect[i][2]; 
+			ID = i;
+		}
+	}
+	return smallestQ;
+}
+
+int sumP_bloc(vector<vector<int> > vect) {
+	int sumP = 0;
+
+	for (unsigned int i = 0; i < vect.size(); i++) {
+		sumP += vect[i][1];
+	}
+	return sumP;
+}
+
+int maximum(int a, int b, int c)
+{
+	int max = (a < b) ? b : a;
+	return ((max < c) ? c : max);
+}
+
+///////////// CARLIER /////////////////////////
+
+int Carlier(vector<vector<int> >  vect , int & UB, int & LB) {
+	int U;
+	vector<vector<int> > Uorder;
+
+	Uorder = vect;
+	
+	U = Schrage(Uorder);
+
+	if (U < UB) {
+		UB = U;
+		vect = Uorder;
+	}
+
+	cout << UB << endl;
+
+	int B = findB(vect);
+	int A = findA(vect, B);
+	int C = findC(vect, A, B);
+
+	if (C == 0) {
+		return Cmax(vect);
+	}
+
+	vector<vector<int> > K;
+	vector<vector<int> > K_wC;
+	int rK, qK, pK, hK, rK_wC, qK_wC, pK_wC, hK_wC;
+	int old_R, old_Q;
+
+	K = cutBloc_woC(vect, C, B);
+	K_wC = cutBloc_wC(vect, C, B);
+
+	rK = findMinR_bloc(K);
+	qK = findMinQ_bloc(K);
+	pK = sumP_bloc(K);
+	hK = rK + qK + pK;
+		
+	rK_wC = findMinR_bloc(K_wC);
+	qK_wC = findMinQ_bloc(K_wC);
+	pK_wC = sumP_bloc(K_wC);
+	hK_wC = rK_wC + qK_wC + pK_wC;
+
+	old_R = vect[C][0];
+	vect[C][0] = max(vect[C][0], rK + pK);
+
+	LB = SchragePTMN(vect);
+	LB = maximum(hK, hK_wC, LB);
+
+	if (LB < UB) {
+		K.clear();
+		K_wC.clear();
+		Carlier(vect, UB , LB );
+	}
+
+	vect[C][0] = old_R;
+
+	old_Q = vect[C][2];
+	vect[C][2] = max(vect[C][2], qK + pK);
+
+	LB = SchragePTMN(vect);
+	LB = maximum(hK, hK_wC, LB);
+
+	if (LB < UB) {
+		K.clear();
+		K_wC.clear();
+		Carlier(vect, UB , LB);
+	}
+	
+	vect[C][2] = old_Q;
+}
 
 
 
@@ -249,7 +393,7 @@ int main()
 {
 	// t-tasks, m=3 - rpq 
 	int t, m;
-	ifstream data("inMak.txt");
+	ifstream data("inData001.txt");
 	data >> t;
 	data >> m;
 	vector<vector<int> > vect;
@@ -271,6 +415,12 @@ int main()
 		vect[i].push_back(tmp);
 	}
 
+	int UB = 9999999;
+	int LB = 9999999;
+
+	Carlier(vect,UB,LB);
+
+	/*
 	vector<vector<int> > brandNewOrder;
 	brandNewOrder = vect;
 
@@ -288,7 +438,12 @@ int main()
 	int C = findC(brandNewOrder, A , B);
 	cout << C << endl;
 
+	PrintVect(brandNewOrder);
 
+	brandNewOrder = cutBloc(brandNewOrder, C, B);
 
+	PrintVect(brandNewOrder);
+	*/
+	
 
 }
