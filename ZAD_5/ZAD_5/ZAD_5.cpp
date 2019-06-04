@@ -192,6 +192,7 @@ int SchragePTMN(vector<vector<int> >  vect) {
 
 /////////// CARLIER FUNKCJE //////////////////////////
 ///sprawdzic 
+/*
 int findA(vector<vector<int> > vect, int B) {
 	int ID=0;
 	int sum = 0;
@@ -203,6 +204,41 @@ int findA(vector<vector<int> > vect, int B) {
 			ID = i;
 		}
 		sum += vect[i][1];
+	}
+	return ID;
+}*/
+
+// rownoznaczne sa!
+vector<vector<int> > cutBloc(vector<vector<int> > vect, int B) {
+	vector<vector<int> > bloc;
+	vector<int> tmp(3, 0);
+	int blocIT = 0;
+
+	for (unsigned int i = 0; i <= B; i++) {
+		tmp[0] = vect[i][0];
+		tmp[1] = vect[i][1];
+		tmp[2] = vect[i][2];
+
+		bloc.push_back(tmp);
+	}
+	return bloc;
+}
+int findA(vector<vector<int> > vect, int B) {
+	vector<vector<int> > doB = cutBloc(vect, B);
+
+	int ID = 0;
+	int cmax = Cmax(doB);
+	int sum_tmp = 0;
+
+	for (int i = 0; i <= B; i++) {
+		for (int j = i; j <= B; j++) {
+			sum_tmp += vect[j][1];
+		}
+
+		if (vect[i][0] + sum_tmp + vect[B][2] == cmax) {
+			ID = i;
+		}
+		sum_tmp = 0;
 	}
 	return ID;
 }
@@ -315,7 +351,7 @@ int maximum(int a, int b, int c)
 
 ///////////// CARLIER /////////////////////////
 
-vector<vector<int> > Carlier(vector<vector<int> >  vect , int & UB, int & LB) {
+vector<vector<int> > Carlier(vector<vector<int> >  vect , int & UB) {
 	vector<vector<int> > Uorder;
 	Uorder = vect;
 	
@@ -325,14 +361,15 @@ vector<vector<int> > Carlier(vector<vector<int> >  vect , int & UB, int & LB) {
 		UB = U;
 		vect = Uorder;
 	}
+	int LB = SchragePTMN(vect);
 
-	//cout << UB << endl;
+	cout << UB << endl;
 
 	int B = findB(vect);
 	int A = findA(vect, B);
 	int C = findC(vect, A, B);
 
-	cout << A << endl;
+	cout << "               "  << A << endl;
 
 	if (C == 0) {
 		return vect;
@@ -359,11 +396,12 @@ vector<vector<int> > Carlier(vector<vector<int> >  vect , int & UB, int & LB) {
 	old_R = vect[C][0];
 	vect[C][0] = max(old_R, rK + pK);
 
-	LB = SchragePTMN(vect);
-	LB = maximum(hK, hK_wC, LB);
 
-	if (LB < UB) {
-		Carlier(vect, UB , LB );
+	int LBa = LB;
+	LBa = maximum(hK, hK_wC, LBa);
+
+	if (LBa < UB) {
+		Carlier(vect, UB );
 	}
 
 	vect[C][0] = old_R;
@@ -371,11 +409,12 @@ vector<vector<int> > Carlier(vector<vector<int> >  vect , int & UB, int & LB) {
 	old_Q = vect[C][2];
 	vect[C][2] = max(old_Q, qK + pK);
 
-	LB = SchragePTMN(vect);
-	LB = maximum(hK, hK_wC, LB);
 
-	if (LB < UB) {
-		Carlier(vect, UB , LB);
+	int LBb = LB;
+	LBb = maximum(hK, hK_wC, LBb);
+
+	if (LBb < UB) {
+		Carlier(vect, UB );
 	}
 	
 	vect[C][2] = old_Q;
@@ -387,7 +426,7 @@ int main()
 {
 	// t-tasks, m=3 - rpq 
 	int t, m;
-	ifstream data("inMak.txt");
+	ifstream data("inData001.txt");
 	data >> t;
 	data >> m;
 	vector<vector<int> > vect;
@@ -408,14 +447,14 @@ int main()
 		data >> tmp;
 		vect[i].push_back(tmp);
 	}
-
+	//int wynik = Schrage(vect);
 	
-
+	//cout << wynik << endl;
 	int UB = 9999999;
-	int LB = 0;
 	vector<vector<int> > finalOrder;
 
-	finalOrder = Carlier(vect,UB,LB);
+	finalOrder = Carlier(vect,UB);
+
 	
 	/*
 	
